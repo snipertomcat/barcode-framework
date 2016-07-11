@@ -1,0 +1,55 @@
+# Example PHP Schema file
+# Use the following command to regenerate entities:
+# bin/schema generate-types src/ app/config/schema.yml
+
+rdfa:
+  - https://raw.githubusercontent.com/schemaorg/schemaorg/sdo-gozer/data/schema.rdfa
+annotationGenerators:
+    - ApiPlatform\SchemaGenerator\AnnotationGenerator\PhpDocAnnotationGenerator
+    - ApiPlatform\SchemaGenerator\AnnotationGenerator\DoctrineOrmAnnotationGenerator
+    - ApiPlatform\SchemaGenerator\AnnotationGenerator\ConstraintAnnotationGenerator
+    - ApiPlatform\SchemaGenerator\AnnotationGenerator\DunglasApiAnnotationGenerator
+namespaces:
+  entity: AppBundle\Entity
+types:
+  Barcode:
+    parent: false
+    properties:
+      alternateName: qrcode
+      description: An actual barcode that can be read by a barcode scanner and translated into the ASCII character value that barcode represents
+      image: https://www.google.com/search?q=barcode+image&ie=utf-8&oe=utf-8#safe=off&q=barcode
+      name: Barcode
+      sameAs: 
+
+  CreativeWork:
+    parent: false
+    properties:
+      name: ~
+      description: ~
+      author:
+        range:       Person
+        cardinality: (*..*)
+      publisher: ~
+      genre: ~
+      datePublished: ~
+  Book:
+    properties:
+      illustrator:
+        cardinality: (*..*)
+      isbn: ~
+      numberOfPages: ~
+  Person:
+    parent: false
+    properties:
+      name: ~
+      description: ~
+      url: ~
+      birthDate: ~
+      gender: ~
+  Organization:
+    parent: false
+    properties:
+      name: ~
+      description: ~
+      url: ~
+
